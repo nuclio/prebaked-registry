@@ -6,6 +6,9 @@ addons:
     packages:
       - docker-ce
 
+before_install:
+  - sudo apt-get -y httpie
+
 script:
   - bash <(curl -s https://codecov.io/bash)
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "development" ]; then
