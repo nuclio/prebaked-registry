@@ -32,8 +32,14 @@ script:
 
 deploy:
   provider: releases
+  # - Create a `public_repo` GitHub token. Go to: https://github.com/settings/tokens/new
+  # user:email, read:org, repo_deployment, repo:status, write:repo_hook
+  # - Encrypt it: `travis encrypt 0123456789012345678901234567890123456789`
+  #      Note: If your project is on travis-ci.com you need to add the --pro flag like so:
+  #      `travis encrypt 0123456789012345678901234567890123456789 --pro`
+  # - Paste the output down here
   api_key:
-    secure: XYb8aOndiae7AoLyZU2e4s4GKKyoJjjW8tA+gG0HHD6AhqbaaSx6IofwNbQqOhM0iGOTWeeG3SaW34MPRcjV3FX0fYO8lW2GAynXT6Td5uhJmPtmk/msrfdLlCVYhQ42DoWjvtWwaejJRZCYHNlhAwH6c/peSO7KqN0QaRABfO4CK6Npvt9JMo+hCfxnUmaVBzkbtfXIrBlxkXxVOGn/geUzf+2qpnMw85WMIN8RIXedNBe0UBkBasPJA5hKadckMKDCaIbiQ8KsOF2HK7IGwg/goTMfshuOZn/f8aCC+D5lyCQD3bkuHJqrj+HYCVHalAeESXJGmSHr/xmV+XQ9RoxdSUaO2TBU4r+WPPM1JsNNAvQe4zxEaVXOu41bRbZnccxwCHhPcKwT+KD7IniJMUdRkTadGPx+yZoMGwxtGK6elDyr3yzzYRfjBIcfecaPVifny51bRxWpGwcaoWP0qew86vqMcCz9dQBZUvKA/+zdcKXZHvqbouh+Iv79z7BVaW7aTmcsIhn7miqH5qIOnfJUsZiBAAY5EX7FpXMtSx9cpna+vKsvtRtSnywLsLDiLAPLWE0muTDPDksDsmTT0AvHQENv0bd5U0qnTlaR2Q31Q2e8WY0y7DZrYgruNGTvVtwrrAv4KvBHjO0GJya4NvnZB37yMFTKJouZU/o8qm4=
+    secure: "hufFtlp9YtWwn2JzlBipckvIdbS/Z4PLk8D1BH9MHgE8eRxn5k48+T3XHf3cnbuhxwB4+ySO3Df4sEF6SOniNWRwCae/xH2H2URejJkBqA9mJ2GdOMkHOPhKOa5sY3LFK5/zcmEF3H/mqdNDE8059Og8+W4zEoI1d9kyPAl0nXgnx+tz0sz3xGBQU+CulURaKFRrhcTa3sfBPWPP7oyy7v1mSkSspDPS/Rhhq+vVJJ7NmyTLeBXJ0PvawWUf7/tnY87qSPgSc/lwW+/Z97Onf7la0d9sSf2EuG3leZh9AsBSnsBAyl/khMUI/4lmm9EETcoAkrF8fnibv3pzODYJsmJry6+nm+vmRt8EM/oGwXyRF0N0a68IsXWM3NUzLjdJ4v2St/Cut/w/ASTx70V+6xzaCDd4jOyPN2IvfWLtu3wxet5TFW8Xho9Jsl2RFh+4eehV1gdZWJT/FkHd5kRws4TmWYqKMKJBGldHgtQAb2M2hip9Rcc46vxK+m1JNkBi9G3Ixte4cQyv+kYYUnKZI+k5qXx/ijrZg/1c8pkT3MVrIDOjk+BHF6ygpejDvEnky1B6UrME10ER2D2RLmba3LNDJRgZ6Zy301K07Uh/tMnUWSRSIc+PcChq6SEr0F4oNjTc5zEWdDCHBqzA5rbbiq7egM4Ha72enB2WTZS27rE="
   cleanup: false
   on:
     tags: true
