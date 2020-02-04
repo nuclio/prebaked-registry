@@ -58,6 +58,7 @@ docker run --user 1000:1000 --rm -d -p 5000:5000 --name=prebaked-registry-nuclio
 IMAGES_TO_BAKE=(
 "quay.io/nuclio/handler-builder-python-onbuild:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-golang-onbuild:${NUCLIO_LABEL}-amd64"
+"quay.io/nuclio/handler-builder-golang-onbuild:${NUCLIO_LABEL}-amd64-alpine"
 "quay.io/nuclio/handler-builder-nodejs-onbuild:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-java-onbuild:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-dotnetcore-onbuild:${NUCLIO_LABEL}-amd64"
