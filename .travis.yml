@@ -7,7 +7,7 @@ addons:
       - docker-ce
 
 before_install:
-  - sudo apt-get -y httpie
+  - sudo apt-get install -y httpie
 
 script:
   - bash <(curl -s https://codecov.io/bash)
