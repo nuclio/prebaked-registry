@@ -20,5 +20,5 @@ build:
 
 .PHONY: release
 release:
-	docker push NUCLIO_REGISTRY_IMAGE_NAME:$(NUCLIO_LABEL)
+	docker push $(PREBAKED_REGISTRY_IMAGE_NAME):$(NUCLIO_LABEL)
 	@echo "Done pushing to release registry"
