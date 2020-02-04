@@ -86,10 +86,10 @@ printf "\n## View catalog - Listing baked images in registry\n"
 http get localhost:5000/v2/_catalog
 
 printf "\n## Commiting prebaked local registry image\n"
-declare NUCLIO_REGISTRY_IMAGE_NAME
+declare PREBAKED_REGISTRY_IMAGE
 PREBAKED_REGISTRY_IMAGE="${PREBAKED_REGISTRY_IMAGE_NAME}:${NUCLIO_LABEL}"
 
-docker commit --message "Baking nuclio images for ${NUCLIO_LABEL}" prebaked-registry-nuclio PREBAKED_REGISTRY_IMAGE
+docker commit --message "Baking nuclio images for ${NUCLIO_LABEL}" prebaked-registry-nuclio ${PREBAKED_REGISTRY_IMAGE}
 docker rm -f prebaked-registry-nuclio
 printf "\n## Completed building prebaked-registry for nuclio - image: ${PREBAKED_REGISTRY_IMAGE}\n"
 
