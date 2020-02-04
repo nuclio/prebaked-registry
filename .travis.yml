@@ -1,5 +1,3 @@
-sudo: required
-
 services:
   - docker
 
@@ -33,6 +31,6 @@ deploy:
   provider: releases
   api_key:
     secure: XYb8aOndiae7AoLyZU2e4s4GKKyoJjjW8tA+gG0HHD6AhqbaaSx6IofwNbQqOhM0iGOTWeeG3SaW34MPRcjV3FX0fYO8lW2GAynXT6Td5uhJmPtmk/msrfdLlCVYhQ42DoWjvtWwaejJRZCYHNlhAwH6c/peSO7KqN0QaRABfO4CK6Npvt9JMo+hCfxnUmaVBzkbtfXIrBlxkXxVOGn/geUzf+2qpnMw85WMIN8RIXedNBe0UBkBasPJA5hKadckMKDCaIbiQ8KsOF2HK7IGwg/goTMfshuOZn/f8aCC+D5lyCQD3bkuHJqrj+HYCVHalAeESXJGmSHr/xmV+XQ9RoxdSUaO2TBU4r+WPPM1JsNNAvQe4zxEaVXOu41bRbZnccxwCHhPcKwT+KD7IniJMUdRkTadGPx+yZoMGwxtGK6elDyr3yzzYRfjBIcfecaPVifny51bRxWpGwcaoWP0qew86vqMcCz9dQBZUvKA/+zdcKXZHvqbouh+Iv79z7BVaW7aTmcsIhn7miqH5qIOnfJUsZiBAAY5EX7FpXMtSx9cpna+vKsvtRtSnywLsLDiLAPLWE0muTDPDksDsmTT0AvHQENv0bd5U0qnTlaR2Q31Q2e8WY0y7DZrYgruNGTvVtwrrAv4KvBHjO0GJya4NvnZB37yMFTKJouZU/o8qm4=
-  skip_cleanup: true
+  cleanup: false
   on:
     tags: true
