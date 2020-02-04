@@ -1,0 +1,30 @@
+sudo: required
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - docker-ce
+
+script:
+  - bash <(curl -s https://codecov.io/bash)
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "development" ]; then
+    export NUCLIO_LABEL="unstable";
+    fi
+  - if [ "$TRAVIS_TAG" != "" ]; then
+    export NUCLIO_LABEL="$TRAVIS_TAG";
+    fi
+  - echo $TRAVIS_PULL_REQUEST
+  - echo $TRAVIS_BRANCH
+  - echo $NUCLIO_LABEL
+  - if [ -n "$NUCLIO_LABEL" ]; then
+    echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin quay.io &&
+    make build release &&
+    if [ "$NUCLIO_LABEL" != "unstable" ]; then
+    docker tag "quay.io/nuclio/prebaked-registry-nuclio:$NUCLIO_LABEL" quay.io/nuclio/prebaked-registry-nuclio:stable &&
+    docker push quay.io/nuclio/prebaked-registry-nuclio:stable;
+    fi
+    fi
+  - echo "Done."
