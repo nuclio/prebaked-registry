@@ -56,6 +56,7 @@ printf "\n## Running local registry: ${BASE_REGISTRY_IMAGE} \n"
 docker run --user 1000:1000 --rm -d -p 5000:5000 --name=prebaked-registry-nuclio ${BASE_REGISTRY_IMAGE}
 
 IMAGES_TO_BAKE=(
+"quay.io/nuclio/processor:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-python-onbuild:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-golang-onbuild:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-golang-onbuild:${NUCLIO_LABEL}-amd64-alpine"
