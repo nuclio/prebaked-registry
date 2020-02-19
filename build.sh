@@ -64,6 +64,13 @@ IMAGES_TO_BAKE=(
 "quay.io/nuclio/handler-builder-java-onbuild:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-dotnetcore-onbuild:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-ruby-onbuild:${NUCLIO_LABEL}-amd64"
+"python:2.7-alpine"
+"python:3.6"
+"mcr.microsoft.com/dotnet/core/runtime:3.1"
+"alpine:3.7"
+"openjdk:9-jre-slim"
+"node:10.3-alpine"
+"ruby:2.4.4-alpine"
 )
 
 printf "\nResolved images to bake:\n"
