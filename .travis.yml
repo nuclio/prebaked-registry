@@ -21,7 +21,7 @@ script:
   - echo $TRAVIS_BRANCH
   - echo $NUCLIO_LABEL
   - if [ -n "$NUCLIO_LABEL" ]; then
-    docker login -u="$DOCKER_USERNAME" --p="$DOCKER_PASSWORD" quay.io &&
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" quay.io &&
     make build release &&
     if [ "$NUCLIO_LABEL" != "unstable" ]; then
     docker tag "quay.io/nuclio/prebaked-registry-nuclio:$NUCLIO_LABEL" quay.io/nuclio/prebaked-registry-nuclio:stable &&
