@@ -56,6 +56,13 @@ printf "\n## Running local registry: ${BASE_REGISTRY_IMAGE} \n"
 docker run --user 1000:1000 --rm -d -p 5000:5000 --name=prebaked-registry-nuclio ${BASE_REGISTRY_IMAGE}
 
 IMAGES_TO_BAKE=(
+"python:2.7-alpine"
+"python:3.6"
+"mcr.microsoft.com/dotnet/core/runtime:3.1"
+"alpine:3.7"
+"openjdk:9-jre-slim"
+"node:10.3-alpine"
+"ruby:2.4.4-alpine"
 "quay.io/nuclio/processor:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-python-onbuild:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-golang-onbuild:${NUCLIO_LABEL}-amd64"
@@ -64,13 +71,6 @@ IMAGES_TO_BAKE=(
 "quay.io/nuclio/handler-builder-java-onbuild:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-dotnetcore-onbuild:${NUCLIO_LABEL}-amd64"
 "quay.io/nuclio/handler-builder-ruby-onbuild:${NUCLIO_LABEL}-amd64"
-"python:2.7-alpine"
-"python:3.6"
-"mcr.microsoft.com/dotnet/core/runtime:3.1"
-"alpine:3.7"
-"openjdk:9-jre-slim"
-"node:10.3-alpine"
-"ruby:2.4.4-alpine"
 )
 
 printf "\nResolved images to bake:\n"
@@ -82,9 +82,10 @@ do
   docker pull $ORIG_IMAGE
 
   declare RETAGGED_IMAGE
-  RETAGGED_IMAGE=${ORIG_IMAGE/"quay.io"/"localhost:5000"}
+  RETAGGED_IMAGE="localhost:5000/"${ORIG_IMAGE##*/}
 
   printf "\n### Tagging image to local prebaked registry\n"
+  echo $RETAGGED_IMAGE
   docker tag $ORIG_IMAGE $RETAGGED_IMAGE
 
   printf "\n### Pushing image to prebaked registry\n"
