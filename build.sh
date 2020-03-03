@@ -82,7 +82,7 @@ do
   docker pull $ORIG_IMAGE
 
   declare RETAGGED_IMAGE
-  RETAGGED_IMAGE="localhost:5000/"${ORIG_IMAGE##*/}
+  RETAGGED_IMAGE="localhost:5000/"${ORIG_IMAGE#*/}
 
   printf "\n### Tagging image to local prebaked registry\n"
   echo $RETAGGED_IMAGE
