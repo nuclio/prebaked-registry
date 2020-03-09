@@ -7,7 +7,7 @@ BASE_DOCKER_REGISTRY_IMAGE=$(RELEASE_REGISTRY_URL)/iguazio/muted-registry:2.7.1
 PREBAKED_REGISTRY_IMAGE_NAME=$(RELEASE_REGISTRY_URL)/$(RELEASE_REGISTRY_USER)/prebaked-registry-nuclio
 
 # Usage examples:
-# > NUCLIO_LABEL=1.1.12 make build
+# > NUCLIO_LABEL=1.3.17 make build
 
 .PHONY: all
 all: build release
