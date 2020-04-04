@@ -59,6 +59,7 @@ IMAGES_TO_BAKE=(
 "python:2.7-alpine"
 "python:3.6"
 "mcr.microsoft.com/dotnet/core/runtime:3.1"
+"alpine:3.7"
 "alpine:3.11"
 "openjdk:9-jre-slim"
 "node:10.3-alpine"
