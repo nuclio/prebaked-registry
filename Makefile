@@ -20,11 +20,11 @@ build:
 
 .PHONY: release
 release:
-	#docker push $(PREBAKED_REGISTRY_IMAGE_NAME):$(NUCLIO_LABEL)
+	docker push $(PREBAKED_REGISTRY_IMAGE_NAME):$(NUCLIO_LABEL)
 	@echo "Done pushing to release registry"
 
 .PHONY: release-stable
 release:
 	docker tag $(PREBAKED_REGISTRY_IMAGE_NAME):$(NUCLIO_LABEL) $(PREBAKED_REGISTRY_IMAGE_NAME):stable
-	#docker push $(PREBAKED_REGISTRY_IMAGE_NAME):stable
+	docker push $(PREBAKED_REGISTRY_IMAGE_NAME):stable
 	@echo "Done pushing stable to release registry"
