@@ -10,7 +10,7 @@ PREBAKED_REGISTRY_IMAGE_NAME=$(RELEASE_REGISTRY_URL)/$(RELEASE_REGISTRY_USER)/pr
 # > NUCLIO_LABEL=1.3.17 make build
 
 .PHONY: all
-all: build release
+all: build release release-stable
 	@echo Done.
 
 .PHONY: build
@@ -20,5 +20,11 @@ build:
 
 .PHONY: release
 release:
-	docker push $(PREBAKED_REGISTRY_IMAGE_NAME):$(NUCLIO_LABEL)
+	#docker push $(PREBAKED_REGISTRY_IMAGE_NAME):$(NUCLIO_LABEL)
 	@echo "Done pushing to release registry"
+
+.PHONY: release-stable
+release:
+	docker tag $(PREBAKED_REGISTRY_IMAGE_NAME):$(NUCLIO_LABEL) $(PREBAKED_REGISTRY_IMAGE_NAME):stable
+	#docker push $(PREBAKED_REGISTRY_IMAGE_NAME):stable
+	@echo "Done pushing stable to release registry"

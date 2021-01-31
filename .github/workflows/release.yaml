@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  release:
+    types:
+    - created
+
+env:
+  RELEASE_REGISTRY_URL: quay.io
+  RELEASE_REGISTRY_USER: nuclio
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Dump github context
+      run: echo "$GITHUB_CONTEXT"
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+
+    - name: Dump runner context
+      run: echo "$RUNNER_CONTEXT"
+      env:
+        RUNNER_CONTEXT: ${{ toJson(runner) }}
+
+    - name: Dump github ref
+      run: echo "$GITHUB_REF"
+    
+    - name: Extract ref info
+      id: release_info
+      run: |
+        echo ::set-output name=REF_BRANCH::${GITHUB_REF#refs/heads/}
+        echo ::set-output name=REF_TAG::${GITHUB_REF#refs/tags/}
+
+    - name: Set NUCLIO_LABEL to release tag
+      run: |
+        echo "NUCLIO_LABEL=${{ steps.release_info.outputs.REF_TAG }}" >> $GITHUB_ENV
+
+    - uses: actions/checkout@v2
+
+    # since github-actions gives us 14G only, and fill it up with some garbage
+    # we will free up some space for us (~2GB)
+    - name: Freeing some disk space
+      run: docker system prune --all --force
+
+    - uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.REPO }}
+        username: ${{ secrets.QUAYIO_DOCKER_USERNAME }}
+        password: ${{ secrets.QUAYIO_DOCKER_PASSWORD }}
+
+    - name: Install HTTPie
+      run: |
+        sudo apt update -yqq && sudo apt install -qqy httpie
+
+    - name: Build and Release
+      run: |
+        make build release release-stable
