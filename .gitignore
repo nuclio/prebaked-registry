@@ -1,6 +1,9 @@
 
 *.pyc
 
+# act files (https://github.com/nektos/act)
+.github/act
+
 .idea/
 venv/
 

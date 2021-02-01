@@ -77,21 +77,26 @@ IMAGES_TO_BAKE=(
 printf "\nResolved images to bake:\n"
 printf '%s\n' "${IMAGES_TO_BAKE[@]}"
 
+# PULL IMAGES
+echo "${IMAGES_TO_BAKE[@]}" | xargs -n 1 -P 3 docker pull
+
+# RETAG
+RETAGGED_IMAGES=()
 for ORIG_IMAGE in "${IMAGES_TO_BAKE[@]}"
 do
-  printf "\n### Pulling docker image\n"
-  docker pull $ORIG_IMAGE
-
   declare RETAGGED_IMAGE
   RETAGGED_IMAGE="localhost:5000/"${ORIG_IMAGE#*/}
 
   printf "\n### Tagging image to local prebaked registry\n"
   echo $RETAGGED_IMAGE
   docker tag $ORIG_IMAGE $RETAGGED_IMAGE
-
-  printf "\n### Pushing image to prebaked registry\n"
-  docker push $RETAGGED_IMAGE
+  RETAGGED_IMAGES+=($RETAGGED_IMAGE)
 done
+
+# PUSH
+printf "\n### Pushing images to prebaked registry\n"
+printf '%s\n' "${RETAGGED_IMAGES[@]}"
+echo "${RETAGGED_IMAGES[@]}" | xargs -n 1 -P 5 docker push
 
 printf "\n## View catalog - Listing baked images in registry\n"
 http get localhost:5000/v2/_catalog
