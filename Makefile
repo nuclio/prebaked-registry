@@ -15,7 +15,7 @@ all: build release release-stable
 
 .PHONY: build
 build:
-	./build.sh --prebaked-registry-image-name=$(PREBAKED_REGISTRY_IMAGE_NAME) --nuclio-label=$(NUCLIO_LABEL) --base-registry-image=$(BASE_DOCKER_REGISTRY_IMAGE)
+	./build.sh --prebaked-registry-image-name=$(PREBAKED_REGISTRY_IMAGE_NAME) --nuclio-version=$(NUCLIO_LABEL) --base-registry-image=$(BASE_DOCKER_REGISTRY_IMAGE)
 	@echo "Done buildling prebaked-registry-nuclio version=$(NUCLIO_LABEL)"
 
 .PHONY: release
